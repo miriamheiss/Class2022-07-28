@@ -1,0 +1,32 @@
+---
+title: "Height and Weight"
+author: "Miriam Heiss"
+date: "7/28/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(primer.data)
+```
+
+```{r, warning = FALSE}
+nhanes %>% 
+  filter(age >= 18) %>% 
+ggplot(mapping = aes(x = height,
+                     y = weight,
+                     color = gender))+
+  geom_point(alpha = 0.1, size = 0.5)+
+ geom_smooth(se = TRUE, method = "loess", formula = y~x)+
+  facet_wrap(~gender)+
+  theme_bw()+
+  labs(title = "Height and Weight of U.S. Adults",
+       subtitle = "On average, men are taller than women",
+       caption = "Source: National Health and Nutrition Examinaion Survey",
+       x = "Height in Centimeters",
+       y = "Weight in Kilograms",
+       color = "Gender")
+
+```
+
