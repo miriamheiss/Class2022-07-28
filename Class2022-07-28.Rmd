@@ -11,8 +11,8 @@ library(tidyverse)
 library(primer.data)
 ```
 
-```{r, warning = FALSE}
-nhanes %>% 
+```{r make-plot, warning = FALSE}
+graph_of_height <- nhanes %>% 
   filter(age >= 18) %>% 
 ggplot(mapping = aes(x = height,
                      y = weight,
@@ -27,6 +27,12 @@ ggplot(mapping = aes(x = height,
        x = "Height in Centimeters",
        y = "Weight in Kilograms",
        color = "Gender")
-
+graph_of_height
 ```
+
+```{r save-plot, warning=FALSE}
+ggsave("Cool-Graph.png", graph_of_height, 
+       width = 5.5, height = 4)
+```
+
 
